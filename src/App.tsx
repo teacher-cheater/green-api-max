@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import LoginForm from './components/LoginForm';
 import type { ApiCredentials } from './api/greenapi';
+import LoginForm from './components/LoginForm';
+import { clearCredentials, loadCredentials, saveCredentials } from './storage';
 
 function App() {
-    const [creds, setCreds] = useState<ApiCredentials | null>(null);
+    const [creds, setCreds] = useState<ApiCredentials | null>(loadCredentials);
 
     function handleLogin(next: ApiCredentials) {
+        saveCredentials(next);
         setCreds(next);
     }
 
     function handleLogout() {
+        clearCredentials();
         setCreds(null);
     }
 
