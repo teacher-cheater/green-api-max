@@ -1,0 +1,31 @@
+.messenger {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    height: 100%;
+}
+
+.avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 600;
+    background: var(--accent-grad);
+}
+
+.empty {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    padding: 24px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.empty--list {
+    height: auto;
+    padding: 32px 16px;
+}

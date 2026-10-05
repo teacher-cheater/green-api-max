@@ -1,5 +1,6 @@
-import type { Chat, Chats, ConnectionStatus } from '../types/chat';
-import { formatPhone } from '../utils/phone';
+import type { Chat, Chats, ConnectionStatus } from '../../types/chat';
+import { formatPhone } from '../../utils/phone';
+import './Sidebar.css';
 
 interface SidebarProps {
     idInstance: string;
