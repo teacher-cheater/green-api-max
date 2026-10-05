@@ -1,7 +1,12 @@
+export type MessageStatus = 'sending' | 'sent' | 'error';
+export type MessageDirection = 'in' | 'out';
+
 export type Message = {
     id: string;
     text: string;
     ts: number;
+    direction: MessageDirection;
+    status?: MessageStatus;
 };
 
 export type Chat = {

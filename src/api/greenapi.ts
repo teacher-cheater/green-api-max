@@ -15,6 +15,10 @@ interface StateInstanceResponse {
         | 'starting';
 }
 
+interface SendMessageResponse {
+    idMessage: string;
+}
+
 export class ApiError extends Error {
     status?: number;
 
@@ -76,10 +80,10 @@ export function sendMessage(
     creds: ApiCredentials,
     chatId: string,
     message: string,
-): Promise<unknown> {
+): Promise<SendMessageResponse> {
     return request(methodUrl(creds, 'sendMessage'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chatId, message }),
-    });
+    }) as Promise<SendMessageResponse>;
 }
