@@ -1,6 +1,7 @@
 import { Activity, useState } from 'react';
-import { getStateInstance } from '../api/greenapi';
-import type { Credentials } from '../types/chat';
+import { getStateInstance } from '../../api/greenapi';
+import type { Credentials } from '../../types/chat';
+import './LoginForm.css';
 
 interface LoginFormProps {
     onLogin: (creds: Credentials) => void;

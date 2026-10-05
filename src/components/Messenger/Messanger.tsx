@@ -4,7 +4,7 @@ import { chatsReducer } from '../../state/chatsReducer';
 import type { Credentials } from '../../types/chat';
 import { formatPhone, toChatId } from '../../utils/phone';
 import ChatWindow from '../ChatWindow/ChatWindow';
-import NewChatDialog from '../NewChatDialog';
+import NewChatDialog from '../NewChatDialog/NewChatDialog';
 import Sidebar from '../Sidebar/Sidebar';
 import './Messenger.css';
 

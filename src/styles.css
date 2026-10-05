@@ -41,3 +41,51 @@ textarea {
 button {
     cursor: pointer;
 }
+
+.btn {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 600;
+    background: var(--accent-grad);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.btn--ghost {
+    color: var(--text);
+    background: var(--bg-soft);
+}
+
+.btn--icon {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+@media (max-width: 720px) {
+    .messenger {
+        grid-template-columns: 1fr;
+    }
+
+    .messenger .chat {
+        display: none;
+    }
+
+    .messenger--open .sidebar {
+        display: none;
+    }
+
+    .messenger--open .chat {
+        display: flex;
+    }
+
+    .chat__back {
+        display: inline-grid;
+    }
+}

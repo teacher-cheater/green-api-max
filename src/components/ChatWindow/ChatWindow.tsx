@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Chat } from '../../types/chat';
+import './ChatWindow.css';
 
 interface ChatWindowProps {
     chat: Chat;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { ApiCredentials } from './api/greenapi';
-import LoginForm from './components/LoginForm';
+import LoginForm from './components/LoginForm/LoginForm';
 import Messanger from './components/Messenger/Messanger';
 import { clearCredentials, loadCredentials, saveCredentials } from './storage';
 

@@ -54,8 +54,10 @@
 }
 
 .chat-item__body {
+    display: flex;
     flex: 1;
     min-width: 0;
+    flex-direction: column;
 }
 
 .chat-item__name {

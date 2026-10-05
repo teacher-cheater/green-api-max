@@ -1,5 +1,6 @@
 import { Activity, useState } from 'react';
-import { normalizePhone } from '../utils/phone';
+import { normalizePhone } from '../../utils/phone';
+import './NewChatDialog.css';
 
 interface NewChatDialogProps {
     onCreate: (phone: string) => void;
