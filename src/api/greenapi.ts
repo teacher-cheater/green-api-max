@@ -72,3 +72,14 @@ export function getStateInstance(
     return request<StateInstanceResponse>(methodUrl(creds, 'getStateInstance'));
 }
 
+export function sendMessage(
+    creds: ApiCredentials,
+    chatId: string,
+    message: string,
+): Promise<unknown> {
+    return request(methodUrl(creds, 'sendMessage'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chatId, message }),
+    });
+}

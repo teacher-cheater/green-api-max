@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ApiCredentials } from './api/greenapi';
 import LoginForm from './components/LoginForm';
+import Messanger from './components/Messanger';
 import { clearCredentials, loadCredentials, saveCredentials } from './storage';
 
 function App() {
@@ -21,15 +22,11 @@ function App() {
     }
 
     return (
-        <div className="auth">
-            <div className="auth__card">
-                <h1>Инстанс {creds.idInstance}</h1>
-                <p>Вход выполнен</p>
-                <button className="btn" onClick={handleLogout}>
-                    Выйти
-                </button>
-            </div>
-        </div>
+        <Messanger
+            key={creds.idInstance}
+            creds={creds}
+            onLogout={handleLogout}
+        />
     );
 }
 

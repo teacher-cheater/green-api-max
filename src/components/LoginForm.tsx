@@ -1,10 +1,6 @@
-import { useState } from 'react';
+import { Activity, useState } from 'react';
 import { getStateInstance } from '../api/greenapi';
-
-interface Credentials {
-    idInstance: string;
-    apiTokenInstance: string;
-}
+import type { Credentials } from '../types/chat';
 
 interface LoginFormProps {
     onLogin: (creds: Credentials) => void;
@@ -81,11 +77,11 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
                     />
                 </label>
 
-                {error && (
+                <Activity mode={error ? 'visible' : 'hidden'}>
                     <p className="error" role="alert">
                         {error}
                     </p>
-                )}
+                </Activity>
 
                 <button className="btn" disabled={loading}>
                     {loading ? 'Проверяем…' : 'Войти'}
