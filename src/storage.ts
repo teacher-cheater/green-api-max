@@ -1,6 +1,7 @@
 import type { ApiCredentials } from './api/greenapi';
 
 const CREDS_KEY = 'max-chat:credentials';
+const chatsKey = (idInstance: string) => `max-chat:chats:${idInstance}`;
 
 function read<T>(key: string, fallback: T): T {
     try {
@@ -26,3 +27,6 @@ export const saveCredentials = (creds: ApiCredentials): void =>
     write(CREDS_KEY, creds);
 
 export const clearCredentials = (): void => localStorage.removeItem(CREDS_KEY);
+export const loadChats = (idInstance: string) => read(chatsKey(idInstance), {});
+export const saveChats = (idInstance: string, chats: any) =>
+    write(chatsKey(idInstance), chats);
