@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { ApiCredentials } from './api/greenapi';
 import LoginForm from './components/LoginForm/LoginForm';
-import Messanger from './components/Messenger/Messanger';
+import Messenger from './components/Messenger/Messenger';
 import { clearCredentials, loadCredentials, saveCredentials } from './storage';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
     }
 
     return (
-        <Messanger
+        <Messenger
             key={creds.idInstance}
             creds={creds}
             onLogout={handleLogout}

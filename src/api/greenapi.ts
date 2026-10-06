@@ -1,3 +1,5 @@
+import type { GreenApiNotification } from '../types/notification';
+
 export const API_URL = 'https://api.green-api.com';
 
 export interface ApiCredentials {
@@ -86,4 +88,30 @@ export function sendMessage(
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chatId, message }),
     }) as Promise<SendMessageResponse>;
+}
+
+export function receiveNotification(
+    creds: ApiCredentials,
+    signal: AbortSignal,
+    receiveTimeout = 5,
+) {
+    return request<GreenApiNotification | null>(
+        methodUrl(
+            creds,
+            'receiveNotification',
+            `?receiveTimeout=${receiveTimeout}`,
+        ),
+        { signal },
+    );
+}
+
+export function deleteNotification(
+    creds: ApiCredentials,
+    receiptId: number,
+    signal?: AbortSignal,
+) {
+    return request<{ result: boolean }>(
+        methodUrl(creds, 'deleteNotification', `/${receiptId}`),
+        { method: 'DELETE', signal },
+    );
 }

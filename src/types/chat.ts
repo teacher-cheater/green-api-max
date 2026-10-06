@@ -1,5 +1,6 @@
 export type MessageStatus = 'sending' | 'sent' | 'error';
 export type MessageDirection = 'in' | 'out';
+export type ChatInfo = Pick<Chat, 'key' | 'phone' | 'chatId' | 'name'>;
 
 export type Message = {
     id: string;
@@ -36,7 +37,7 @@ export type ChatsAction =
       }
     | {
           type: 'message/add';
-          chat: Chat;
+          chat: ChatInfo;
           message: Message;
           markUnread: boolean;
       }

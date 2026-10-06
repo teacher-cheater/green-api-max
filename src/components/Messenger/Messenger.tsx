@@ -1,9 +1,12 @@
-import { Activity, useReducer, useState } from 'react';
+import { Activity, useEffect, useReducer, useRef, useState } from 'react';
 import { sendMessage } from '../../api/greenapi';
+import { parseIncomingMessage } from '../../api/parseNotification';
 import { chatsReducer } from '../../state/chatsReducer';
 import type { Credentials } from '../../types/chat';
+import type { NotificationBody } from '../../types/greenapi';
 import { formatPhone, toChatId } from '../../utils/phone';
 import ChatWindow from '../ChatWindow/ChatWindow';
+import { useNotifications } from '../hooks/useNotification';
 import NewChatDialog from '../NewChatDialog/NewChatDialog';
 import Sidebar from '../Sidebar/Sidebar';
 import './Messenger.css';
@@ -19,6 +22,24 @@ export default function Messenger({ creds, onLogout }: MessengerProps) {
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const activeChat = activeKey ? chats[activeKey] : null;
+
+    const activeKeyRef = useRef<string | null>(null);
+    useEffect(() => {
+        activeKeyRef.current = activeKey;
+    }, [activeKey]);
+
+    function handleNotification(body: NotificationBody) {
+        const incoming = parseIncomingMessage(body);
+        if (!incoming) return;
+        dispatch({
+            type: 'message/add',
+            chat: incoming.chat,
+            message: incoming.message,
+            markUnread: activeKey !== incoming.chat.key,
+        });
+    }
+
+    const connection = useNotifications(creds, handleNotification);
 
     function selectChat(key: string) {
         setActiveKey(key);
@@ -81,6 +102,7 @@ export default function Messenger({ creds, onLogout }: MessengerProps) {
         <div className={`messenger${activeChat ? ' messenger--open' : ''}`}>
             <Sidebar
                 idInstance={creds.idInstance}
+                connection={connection}
                 chats={chats}
                 activeKey={activeKey}
                 onSelect={selectChat}

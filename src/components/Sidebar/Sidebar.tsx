@@ -4,7 +4,7 @@ import './Sidebar.css';
 
 interface SidebarProps {
     idInstance: string;
-    connection?: ConnectionStatus;
+    connection: ConnectionStatus;
     chats: Chats;
     activeKey: string | null;
     onSelect: (key: string) => void;
@@ -27,6 +27,7 @@ export default function Sidebar({
     onSelect,
     onNewChat,
     onLogout,
+    connection,
 }: SidebarProps) {
     const sorted = Object.values(chats).sort(
         (a, b) => (lastMessage(b)?.ts ?? 0) - (lastMessage(a)?.ts ?? 0),
@@ -38,7 +39,7 @@ export default function Sidebar({
                 <div>
                     <h1 className="sidebar__title">Чаты</h1>
                     <p className="sidebar__sub">
-                        Инстанс {idInstance} · {'Статус Неизвестно'}
+                        Инстанс {idInstance} · {CONNECTION[connection]}
                     </p>
                 </div>
                 <div>
